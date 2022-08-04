@@ -23,15 +23,15 @@ export class ChatGateway
   server: Server;
 
   handleConnection(client: Socket, ...args: any[]) {
-    console.log(`Client connected: ${client.id}`);
+    // console.log(`Client connected: ${client.id}`);
   }
 
   afterInit(server: Server) {
-    console.log('Init');
+    // console.log('Init');
   }
 
   handleDisconnect(client: Socket) {
-    console.log(`Client disconnected: ${client.id}`);
+    // console.log(`Client disconnected: ${client.id}`);
     client.rooms.forEach((room) => {
       if (room !== client.id) {
         client.broadcast.to(room).emit('left');
@@ -50,7 +50,7 @@ export class ChatGateway
 
   @SubscribeMessage('joinChat')
   joinChat(@ConnectedSocket() client: Socket, @MessageBody() id: string) {
-    console.log('joinChat', id);
+    // console.log('joinChat', id);
     client.rooms.forEach((room) => {
       if (room !== client.id) {
         client.leave(room);
@@ -66,10 +66,10 @@ export class ChatGateway
     @ConnectedSocket() client: Socket,
     @MessageBody() message: string,
   ) {
-    console.log('sendMessage');
+    // console.log('sendMessage');
     client.rooms.forEach((room) => {
       if (room !== client.id) {
-        console.log(room, message);
+        // console.log(room, message);
         client.broadcast.to(room).emit('message', message);
       }
     });

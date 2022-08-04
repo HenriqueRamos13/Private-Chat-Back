@@ -13,8 +13,11 @@ import { Socket, Server } from 'socket.io';
 
 @WebSocketGateway({
   cors: {
-    origin: '*',
+    origin: 'http://localhost:5173',
+    credentials: true,
   },
+  httpCompression: true,
+  maxHttpBufferSize: 1e6,
 })
 export class ChatGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect

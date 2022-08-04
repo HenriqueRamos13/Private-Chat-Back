@@ -19,11 +19,15 @@ import { Socket, Server } from 'socket.io';
 export class ChatGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
 {
+  private totalUsers = 0;
+
   @WebSocketServer()
   server: Server;
 
   handleConnection(client: Socket, ...args: any[]) {
     // console.log(`Client connected: ${client.id}`);
+    this.totalUsers++;
+    console.log(this.totalUsers);
   }
 
   afterInit(server: Server) {

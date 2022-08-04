@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Socket, Server } from 'socket.io';
 
 @WebSocketGateway({
+  transports: ['websocket'],
   cors: {
     origin: 'http://localhost:5173',
     credentials: true,

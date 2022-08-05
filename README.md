@@ -48,3 +48,4 @@ $ npm run start:prod
 ## To-do-list
 
 - [ ] Add rate limit.
+- [ ] Add tests.

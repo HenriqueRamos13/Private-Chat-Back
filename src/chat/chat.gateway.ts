@@ -16,7 +16,8 @@ import { NewThrottlerGuard } from '../app.module';
 @WebSocketGateway({
   transports: ['websocket'],
   cors: {
-    origin: ['http://localhost:5173', 'https://privchat.surge.sh'],
+    origin:
+      process.env.NODE_ENV === 'production' ? 'https://privchat.surge.sh' : '*',
     credentials: true,
   },
   httpCompression: true,

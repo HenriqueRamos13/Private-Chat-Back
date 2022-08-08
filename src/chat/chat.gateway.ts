@@ -11,8 +11,9 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 import { Socket, Server } from 'socket.io';
 import { UseGuards } from '@nestjs/common';
-import { NewThrottlerGuard } from '../app.module';
+import { NewThrottlerGuard } from '../Throttler.guard';
 
+@UseGuards(NewThrottlerGuard)
 @WebSocketGateway({
   transports: ['websocket'],
   cors: {
@@ -87,7 +88,6 @@ export class ChatGateway
     client.broadcast.to(id).emit('joined');
   }
 
-  // @UseGuards(NewThrottlerGuard)
   @SubscribeMessage('sendMessage')
   sendMessage(
     @ConnectedSocket() client: Socket,
